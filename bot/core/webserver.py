@@ -1,0 +1,15 @@
+from flask import Flask
+from threading import Thread
+
+app = Flask('')
+
+@app.route('/')
+def home() -> str:
+    return "I'm alive"
+
+def _run() -> None:
+    app.run(host="0.0.0.0", port=8080)
+
+def keep_alive() -> None:
+    t = Thread(target=_run)
+    t.start()
