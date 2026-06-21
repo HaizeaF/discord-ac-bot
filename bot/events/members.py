@@ -7,6 +7,7 @@ class MemberEvents(commands.Cog):
 
     @commands.Cog.listener()
     async def on_member_join(self, member: discord.Member) -> None:
+        """Set the new member's nickname to the first 3 letters of their name, uppercased."""
         display_name = member.display_name[:3].upper()
         await member.edit(nick=display_name)
 

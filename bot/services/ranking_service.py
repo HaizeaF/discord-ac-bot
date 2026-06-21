@@ -2,6 +2,7 @@ from datetime import datetime
 from bot.services.points_service import generate_points
 
 def build_results_leaderboard(track: str, standings: list[str]) -> str:
+    """Build the race results message, assigning points by finishing position."""
     total_drivers = len(standings)
     base_points = generate_points(total_drivers)
 
@@ -9,6 +10,7 @@ def build_results_leaderboard(track: str, standings: list[str]) -> str:
     leaderboard += f"\u001b[1;2m####### 🏁 {track.upper()} 🏁 #######\n"
 
     for i, driver in enumerate(standings):
+        driver = driver.replace(" ", "")
         driver = driver.replace("("," (")
 
         is_dnx = "(DNF)" in driver.upper() or "(DNS)" in driver.upper()
@@ -23,6 +25,7 @@ def build_results_leaderboard(track: str, standings: list[str]) -> str:
     return leaderboard
     
 def build_empty_leaderboard(driver_names: list[str]) -> str:
+    """Build a new ranking message with every driver starting at 0 points."""
     leaderboard = "```ansi\n"
     leaderboard += f"\u001b[1;2m####### 🏆 RANKING {datetime.now().year} 🏆 #######\n"
 
@@ -33,6 +36,7 @@ def build_empty_leaderboard(driver_names: list[str]) -> str:
     return leaderboard
 
 def parse_driver_points(message: str) -> dict[str, int]:
+    """Parse a leaderboard/results message into a {driver: points} dict."""
     driver_points: dict[str, int] = {}
 
     for line in message.split("\n"):
@@ -52,6 +56,7 @@ def parse_driver_points(message: str) -> dict[str, int]:
     return driver_points
 
 def build_updated_ranking(standing_points: dict[str, int]) -> str:
+    """Build the ranking message sorted by total points, descending."""
     updated_ranking = "```ansi\n"
     updated_ranking += f"\u001b[1;2m####### 🏆 RANKING {datetime.now().year} 🏆 #######\n"
 

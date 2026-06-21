@@ -4,6 +4,7 @@ from bot.core.config import DRIVER_ROLE, POLL_CHANNEL
 from bot.services.poll_service import build_participation_poll
 
 async def _send_poll(bot: discord.Client) -> None:
+    """Send the participation poll, mentioning the driver role."""
     channel = bot.get_channel(POLL_CHANNEL)
     role = discord.utils.get(channel.guild.roles, id=DRIVER_ROLE)
 
@@ -12,6 +13,7 @@ async def _send_poll(bot: discord.Client) -> None:
     await channel.send(role.mention, poll=participation_poll)
 
 def start_scheduler(bot: discord.Client) -> AsyncIOScheduler:
+    """Schedule the poll job to run every Monday."""
     scheduler = AsyncIOScheduler()
 
     async def _job() -> None:

@@ -14,6 +14,7 @@ class PollCommands(commands.Cog):
         
     @app_commands.command(name="encuesta", description="Envía una encuesta de participación de carrera al canal general.")
     async def poll(self, interaction: discord.Interaction) -> None:
+        """Manually trigger the same participation poll used by the scheduled job."""
         channel = self.bot.get_channel(POLL_CHANNEL)
         role = discord.utils.get(channel.guild.roles, id=DRIVER_ROLE)
 

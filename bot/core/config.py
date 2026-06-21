@@ -4,6 +4,7 @@ import os
 load_dotenv()
 
 def _get_env_variable(name: str) -> int:
+    """Read a required env variable and cast it to int."""
     value = os.getenv(name)
     if value is None:
         raise ValueError(f"Environment variable '{name}' is not set.")
@@ -24,7 +25,3 @@ COMMAND_CHANNEL = _get_env_variable("COMMANDS_CHANNEL_ID")
 
 # Point system for ranking
 POINT_SYSTEM = [1,2,4,6,8,10,12,15,18,25]
-
-# Logging configuration
-LOG_DIR = "logs"
-LOG_FILE = os.path.join(LOG_DIR, "bot.log")

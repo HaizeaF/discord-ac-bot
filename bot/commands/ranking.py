@@ -19,6 +19,7 @@ class RankingCommands(commands.Cog):
     @app_commands.command(name="resultado", description="Publica los resultados de una carrera en el canal de resultados.")
     @app_commands.describe(standings="Pilotos en orden de llegada, separados por coma (usa (DNF) o (DNS) si aplica).", track="Nombre de la pista")
     async def result(self, interaction: discord.Interaction, standings: str, track: str) -> None:
+        """Build and post the race results message, assigning points by finishing position."""
         if not is_admin(interaction.user):
             await interaction.response.send_message(NOT_ADMIN_MESSAGE, ephemeral=True)
             return
@@ -34,6 +35,7 @@ class RankingCommands(commands.Cog):
 
     @app_commands.command(name="reiniciar", description="Publica un ranking vacío en el canal de ranking.")
     async def reset(self, interaction: discord.Interaction) -> None:
+        """Build and post a new ranking message with every driver starting at 0 points."""
         if not is_admin(interaction.user):
             await interaction.response.send_message(NOT_ADMIN_MESSAGE, ephemeral=True)
             return
@@ -51,6 +53,7 @@ class RankingCommands(commands.Cog):
     @app_commands.command(name="actualizar", description="Calcula y actualiza el ranking sumando los resultados de las últimas carreras.")
     @app_commands.describe(race_qty="Cantidad de carreras a sumar")
     async def update(self, interaction: discord.Interaction, race_qty: int) -> None:
+        """Build and update the ranking message sorted by total points, descending."""
         if not is_admin(interaction.user):
             await interaction.response.send_message(NOT_ADMIN_MESSAGE, ephemeral=True)
             return
