@@ -10,7 +10,9 @@ class ReadyEvents(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self) -> None:
+        """Sync slash commands with Discord and start the scheduled jobs."""
         print("Radio check")
+        
         synced = await self.bot.tree.sync()
         logger.info(f"Synced {len(synced)} commands.")
 

@@ -13,6 +13,7 @@ EXTENSIONS = [
 ]
 
 def create_bot() -> commands.Bot:
+    """Build the bot instance with the required intents enabled."""
     intents = discord.Intents.default()
     intents.message_content = True
     intents.members = True
@@ -22,6 +23,7 @@ def create_bot() -> commands.Bot:
     return bot
 
 async def load_extensions(bot: commands.Bot) -> None:
+    """Load all extensions, raising if any of them fails to load."""
     for extension in EXTENSIONS:
         try:
             await bot.load_extension(extension)

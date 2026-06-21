@@ -6,6 +6,7 @@ from bot.core.config import TOKEN
 from bot.core.logger import setup_logger
 
 async def main() -> None:
+    """Set up logging, build the bot, load its cogs and start it."""
     setup_logger()
 
     bot = create_bot()

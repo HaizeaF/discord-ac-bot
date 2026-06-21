@@ -13,6 +13,7 @@ class ModerationCommands(commands.Cog):
 
     @app_commands.command(name="borrar", description="Borra las imágenes recientes del canal de comandos.")
     async def delete_images(self, interaction: discord.Interaction) -> None:
+        """Delete recent messages containing an image from the commands channel."""
         if interaction.channel_id != COMMAND_CHANNEL:
             await interaction.response.send_message("Este comando solo puede utilizarse en el canal de comandos", ephemeral=True)
             return
