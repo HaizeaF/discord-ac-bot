@@ -41,6 +41,7 @@ pip install -r requirements.txt
    - Create Polls.
      
    Use the generated URL to invite the bot to your server.
+4. Save the token to write it in the `.env` file.
 
 ### 3. Get the role and channel IDs
 Enable Developer Mode in Discord, then right-click each role/channel and select **Copy ID** for:
